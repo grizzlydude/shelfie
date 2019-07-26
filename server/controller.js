@@ -5,7 +5,7 @@ module.exports = {
             .catch(err => {
                 res.sendStatus(500)
             })
-            res.status(201).send(createAProduct)
+        res.status(201).send(createAProduct)
     },
     getOneProduct: (req, res) => {
         let dbInstance = req.app.get('db')
@@ -14,7 +14,7 @@ module.exports = {
         dbInstance.get_one_product(id).then(() => {
             res.sendStatus(200).send(shelfie)
         }).catch(err => {
-            res.status(500).send({ errorMessage: "Something has gone Wrong. We are have been informed" })
+            res.status(500).send({ errorMessage: "Data not found. We have been made aware of the issue" })
             console.log(err)
         })
     },
@@ -25,9 +25,25 @@ module.exports = {
                 res.sendStatus(500))
     },
     updateProducts: (req, res) => {
-        res.sendStatus(200).then(console.log('here you go'))
+        const dbInstance = req.app.get('db')
+        const { params, query } = req
+
+        dbInstance.update_product([params.id, query.desc]).then(() => {
+            res.sendStatus(200).send(shelfie)
+        }).catch(err => {
+            res.status(500).send({ errorMessage: "Data not found. We have been made aware of the issue" })
+            console.log(err)
+        })
     },
     deleteProducts: (req, res) => {
-        res.sendStatus(200).then(console.log('here you go'))
+        const dbInstance = req.app.get('db')
+        const { id } = req.params
+
+        dbInstance.delete_product(id).then(() => {
+            res.sendStatus(200).send(product)
+        }).catch(err => {
+            res.status(500).send({ errorMessage: "Data not found. We have been made aware of the issue" })
+            console.log(err)
+        })
     }
 }

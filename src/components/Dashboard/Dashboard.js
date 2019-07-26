@@ -6,10 +6,10 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div>
-            {this.props.inventory}
-                <div>
-                    <Product />
-                </div>
+                <Product
+                    name = {this.props.inventory.name}
+                    price = {this.props.inventory.price}
+                    image = {this.props.inventory.image} />
             </div>
         )
     }

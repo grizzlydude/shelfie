@@ -11,7 +11,19 @@ export default class Form extends Component {
         }
     }
 
-    handleChange(e) {
+    handleItemName(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handlePrice(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleImageURL(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -40,15 +52,15 @@ export default class Form extends Component {
                     <input type='text'
                         placeholder='name of item'
                         name='name'
-                        onChange={e => this.handleChange(e)} />
+                        onChange={e => this.handleItemName(e)} />
                     <input type='text'
                         placeholder='price'
                         name='price'
-                        onChange={e => this.handleChange(e)} />
+                        onChange={e => this.handlePrice(e)} />
                     <input type='text'
                         placeholder='Image URL'
                         name='image'
-                        onChange={e => this.handleChange(e)} />
+                        onChange={e => this.handleImageURL(e)} />
                     <button onClick={() => this.submitInputs()}>Add to Inventory</button>
                     <button onClick={() => this.resetInputs()}>Cancel</button>
                 </form>
@@ -56,24 +68,3 @@ export default class Form extends Component {
         )
     }
 }
-{/* <form onSubmit={e => e.preventDefault()}>
-          <input
-            type="text"
-            placeholder="item name"
-            name="itemName"
-            onChange={e => this.handleChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="last place seen"
-            name="lastSeenLocation"
-            onChange={e => this.handleChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="last time seen"
-            name="lastSeenTime"
-            onChange={e => this.handleChange(e)}
-          />
-          <button onClick={this.submitNewItem}>Submit</button>
-        </form> */}
